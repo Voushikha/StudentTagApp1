@@ -19,7 +19,7 @@ namespace StudentTagApp
         {
             InitializeComponent();
         }
-        //6.1
+        //6.1 list<t>
         private List<string> studentNames = new List<string>();
         private void Form1_Load(object sender, EventArgs e)
         {
