@@ -56,6 +56,7 @@
             this.btnAdd.TabIndex = 1;
             this.btnAdd.Text = "ADD";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnEdit
             // 
@@ -65,6 +66,7 @@
             this.btnEdit.TabIndex = 2;
             this.btnEdit.Text = "EDIT";
             this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnDelete
             // 
@@ -74,6 +76,7 @@
             this.btnDelete.TabIndex = 3;
             this.btnDelete.Text = "DELETE";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnLoad
             // 
@@ -83,6 +86,7 @@
             this.btnLoad.TabIndex = 4;
             this.btnLoad.Text = "LOAD";
             this.btnLoad.UseVisualStyleBackColor = true;
+            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
             // btnSave
             // 
