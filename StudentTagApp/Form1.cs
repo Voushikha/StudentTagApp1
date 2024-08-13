@@ -43,6 +43,7 @@ namespace StudentTagApp
                             studentNames.Add(name);
                         }
                         RefreshStudentList();
+                        SortnDisplay();
                         MessageBox.Show("Data loaded successfully.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
@@ -64,6 +65,7 @@ namespace StudentTagApp
           
             studentNames.Add(name);
             RefreshStudentList();
+            SortnDisplay();
             ClearInput();
             MessageBox.Show("Student added successfully.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -75,6 +77,7 @@ namespace StudentTagApp
             {
                 studentNames.Remove(selectedName);
                 RefreshStudentList();
+                SortnDisplay();
                 ClearInput();
                 MessageBox.Show("Student deleted successfully.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -89,6 +92,7 @@ namespace StudentTagApp
             {
                 studentNames[studentNames.IndexOf(selectedName)] = newName;
                 RefreshStudentList();
+                SortnDisplay();
                 ClearInput();
                 MessageBox.Show("Student updated successfully.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -122,8 +126,73 @@ namespace StudentTagApp
         }
 
         #endregion
+        //6.9 BinarySearch button
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            var searchQuery = txtBoxName.Text.Trim();
+            var foundName = studentNames.Find(s => s.Equals(searchQuery, StringComparison.OrdinalIgnoreCase));
 
-       
+            if (foundName != null)
+            {
+                lstBox.SelectedItem = foundName;
+                txtBoxName.Text = foundName;
+                MessageBox.Show("Student found.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Student not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            txtBoxName.Clear();
+            txtBoxName.Focus();
+            SortnDisplay();
+        }
+        //6.7
+        private void lstBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var selectedName = lstBox.SelectedItem as string;
+            if (selectedName != null)
+            {
+                txtBoxName.Text = selectedName;
+            }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                Filter = "Binary files (*.bin)|*.bin|All files (*.*)|*.*",
+                Title = "Save Student Names"
+            };
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                using (FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.Create))
+                using (BinaryWriter bw = new BinaryWriter(fs))
+                {
+                    foreach (var name in studentNames)
+                    {
+                        bw.Write(name);
+                    }
+                }
+                MessageBox.Show("Data saved successfully.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+        }
+
+        //6.8 Sorting and displaying student names
+        private void SortnDisplay()
+        {
+            // Sort the student names list
+            studentNames.Sort();
+
+            // Refresh the ListBox to display the sorted names
+            RefreshStudentList();
+
+            // Optional: Notify the user that the list has been sorted
+            MessageBox.Show("Student names have been sorted and displayed.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
     }
 }
-

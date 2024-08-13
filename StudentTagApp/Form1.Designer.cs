@@ -47,6 +47,7 @@
             this.lstBox.Name = "lstBox";
             this.lstBox.Size = new System.Drawing.Size(162, 212);
             this.lstBox.TabIndex = 0;
+            this.lstBox.SelectedIndexChanged += new System.EventHandler(this.lstBox_SelectedIndexChanged);
             // 
             // btnAdd
             // 
@@ -96,6 +97,7 @@
             this.btnSave.TabIndex = 5;
             this.btnSave.Text = "SAVE";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnSearch
             // 
@@ -105,6 +107,7 @@
             this.btnSearch.TabIndex = 6;
             this.btnSearch.Text = "Binary Search";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // txtBoxName
             // 
