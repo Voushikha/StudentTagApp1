@@ -42,6 +42,7 @@ namespace StudentTagApp
                             string name = br.ReadString();
                             studentNames.Add(name);
                         }
+                       
                         RefreshStudentList();
                         MessageBox.Show("Data loaded successfully.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -49,7 +50,7 @@ namespace StudentTagApp
             }
 
         }
-       
+
         //6.3 Add Button
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -59,10 +60,11 @@ namespace StudentTagApp
                 MessageBox.Show("Name cannot be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-           //6.4
+            //6.4
             ValidName();
-          
+
             studentNames.Add(name);
+          
             RefreshStudentList();
             ClearInput();
             MessageBox.Show("Student added successfully.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -74,6 +76,7 @@ namespace StudentTagApp
             if (selectedName != null)
             {
                 studentNames.Remove(selectedName);
+               
                 RefreshStudentList();
                 ClearInput();
                 MessageBox.Show("Student deleted successfully.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -88,6 +91,7 @@ namespace StudentTagApp
             if (selectedName != null && !string.IsNullOrWhiteSpace(newName))
             {
                 studentNames[studentNames.IndexOf(selectedName)] = newName;
+            
                 RefreshStudentList();
                 ClearInput();
                 MessageBox.Show("Student updated successfully.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -123,7 +127,6 @@ namespace StudentTagApp
 
         #endregion
 
-       
     }
 }
 
